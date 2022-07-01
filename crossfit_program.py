@@ -11,11 +11,11 @@ weightlifting_exercises = ['Deadlifts','Cleans','Overhead Press','Push Press','B
 set_structures = {'Time':[10,12,15,20,25,30,45] ,
 'Rounds':[3,4,5]}
 reps = list(range(3,30,3))
-motivational_quotes = ['Today I will do what others won’t, so tomorrow I can accomplish what others can’t. — Jerry Rice',
+motivational_quotes = ['Today I will do what others won’t, so tomorrow I can accomplish what others can’t.',
 'Do something today that your future self will thank you for.', 'We are what we repeatedly do. Excellence then is not an act but a habit.'
 'No matter how slow you go, you are still lapping everybody on the couch', 'You miss 100% of the shots you don’t take']
-#function to determine what modality/modality combo depending on the week and day
 
+#function to determine what modality/modality combo depending on the week and day
 def get_modality(week, day):
     if week == 1:
         modality_combo = dict(zip(days[0:5],modality_combinations[0:5]))
@@ -48,7 +48,7 @@ def get_exercise(modality):
         exercise = 'Rest Day'
     return exercise
 
-#don't forget the G case
+#function to determine set structure depending on the modality combo
 def get_set_structure(modality):
     if modality == 'M':
         set_structure = random.choice([30,35,40,45,50,55,60])
@@ -72,7 +72,7 @@ modality = get_modality(week, day)
 exercise = get_exercise(modality)
 set_structure = get_set_structure(modality)
 
-
+#function to generate meters, calories, or reps for metabolic conditioning exercises
 def get_meters_cal_reps(exercise):
     if modality == 'MG' or modality == 'MW' or modality == 'MGW':
         if exercise[0] == 'Run':
@@ -87,8 +87,8 @@ def get_meters_cal_reps(exercise):
 
 meters_cal_reps = get_meters_cal_reps(exercise)
 
+#function to generate a Workout of the Day (WOD)
 def get_WOD(modality, set_structure):
-
     if modality == 'M':
         print('The Workout of the Day is: {time} minute {exercise}'.format(time=set_structure, exercise=exercise))
     elif modality == 'W':
